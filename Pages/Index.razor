@@ -1,0 +1,16 @@
+﻿@page "/"
+@inject IJSRuntime JS
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        string name = await JS.InvokeAsync<string>("prompt", "What is your name?");
+        await JS.InvokeVoidAsync("alert", $"Hello {name}!");
+    }
+}
